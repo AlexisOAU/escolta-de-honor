@@ -1,0 +1,266 @@
+<div class="page">
+  <div class="wrap">
+
+    <!-- TOP BRAND -->
+    <header class="top">
+      <div class="brand">{{ brand }}</div>
+      <div class="tagline">{{ tagline }}</div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="heroCard">
+        <div class="heroMedia">
+          <img class="heroImg" [src]="heroImage" alt="Escolta de Honor - Portada" />
+          <div class="vignette"></div>
+        </div>
+
+        <div class="heroBody">
+          <p class="heroDesc">{{ heroDesc }}</p>
+
+          <div class="ctaRow">
+            <button class="cta" type="button" (click)="openWhatsApp()">
+              <span class="ctaIcon">💬</span>
+              <span class="ctaText">{{ ctaPrimary }}</span>
+            </button>
+
+            <button class="cta ghost" type="button" (click)="scrollTo('protocolo')">
+              <span class="ctaText">{{ ctaSecondary }}</span>
+            </button>
+          </div>
+
+          <div class="stats">
+            <div class="stat" *ngFor="let s of stats">{{ s.label }}</div>
+          </div>
+
+          <div class="note">
+            Atención directa por WhatsApp. Coordinamos el ingreso ceremonial según tu evento.
+            <strong>No requiere ensayo</strong>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUE -->
+    <section class="section">
+      <div class="sectionTitle">
+        <span class="line"></span>
+        <span class="titleText">POR QUÉ FUNCIONA</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="grid4">
+        <article class="card" *ngFor="let v of values">
+          <h3 class="cardTitle">{{ v.title }}</h3>
+          <p class="cardDesc">{{ v.desc }}</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- RESERVA EN 3 PASOS -->
+    <section class="section">
+      <div class="sectionTitle">
+        <span class="line"></span>
+        <span class="titleText">RESERVA EN 3 PASOS</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="grid3">
+        <article class="card" *ngFor="let v of reservaPasos">
+          <h3 class="cardTitle">{{ v.title }}</h3>
+          <p class="cardDesc">{{ v.desc }}</p>
+        </article>
+      </div>
+
+      <div class="ctaCenter">
+        <button class="cta" type="button" (click)="openWhatsApp()">
+          <span class="ctaIcon">📲</span>
+          <span class="ctaText">RESERVAR / COTIZAR</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="section">
+      <div class="sectionTitle">
+        <span class="line"></span>
+        <span class="titleText">VIDEO</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="videoCard">
+        <div class="videoWrap">
+          <video class="video" [attr.poster]="heroImage" controls playsinline preload="metadata">
+            <source [attr.src]="videoSrc" type="video/mp4" />
+            Tu navegador no soporta video HTML5.
+          </video>
+        </div>
+
+        <div class="videoText">
+          <h3>Un vistazo rápido al ingreso</h3>
+          <p>
+            Mira el estilo, la formación y el momento de ingreso ceremonial.
+            Abajo tienes el protocolo paso a paso con videos reales.
+          </p>
+
+          <div class="btnStack">
+            <button class="cta ghost" type="button" (click)="scrollTo('protocolo')">Ver protocolo</button>
+            <button class="cta ghost" type="button" (click)="scrollTo('galeria')">Ver galería</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFO RÁPIDA -->
+    <section class="section">
+      <div class="sectionTitle">
+        <span class="line"></span>
+        <span class="titleText">INFORMACIÓN RÁPIDA</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="grid4">
+        <article class="card" *ngFor="let v of infoRapida">
+          <h3 class="cardTitle">{{ v.title }}</h3>
+          <p class="cardDesc">{{ v.desc }}</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROTOCOLO -->
+    <section id="protocolo" class="section">
+      <div class="sectionTitle">
+        <span class="line"></span>
+        <span class="titleText">PROTOCOLO DE SERVICIO</span>
+        <span class="line"></span>
+      </div>
+
+      <p class="sectionLead">
+        Te mostramos en qué consiste nuestro trabajo paso a paso con videos reales.
+        <strong>No requiere ensayo</strong>.
+      </p>
+
+      <div class="protoGrid">
+        <div class="protoItem" *ngFor="let st of steps">
+          <div class="protoHead">
+            <div class="protoN">{{ st.n }}</div>
+            <div class="protoTxt">
+              <div class="protoTitle">{{ st.title }}</div>
+              <div class="protoDesc">{{ st.desc }}</div>
+            </div>
+          </div>
+
+          <div class="protoMedia">
+            <ng-container *ngIf="isVideo(st.mediaSrc); else protoImgTpl">
+              <video
+                class="protoVideo"
+                [src]="st.mediaSrc"
+                [muted]="true"
+                [autoplay]="true"
+                [loop]="true"
+                playsinline
+                preload="metadata"
+                (loadedmetadata)="forceMuteAndPlay($event)"
+              ></video>
+            </ng-container>
+
+            <ng-template #protoImgTpl>
+              <img class="protoVideo" [src]="st.mediaSrc" [alt]="st.mediaAlt" loading="lazy" />
+            </ng-template>
+
+            <div class="protoCap">{{ st.mediaAlt }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="protocolRules">
+        <div class="rule">
+          <div class="ruleTitle">✔ Puntualidad y seguridad</div>
+          <div class="ruleDesc">Ingreso ordenado, manejo disciplinado de espadas y distancias controladas.</div>
+        </div>
+        <div class="rule">
+          <div class="ruleTitle">✔ Coordinación clara</div>
+          <div class="ruleDesc">Nos adaptamos al programa del evento con comunicación previa por WhatsApp.</div>
+        </div>
+        <div class="rule">
+          <div class="ruleTitle">✔ Presentación de gala</div>
+          <div class="ruleDesc">Uniforme formal, postura ceremonial y presencia profesional en todo momento.</div>
+        </div>
+      </div>
+
+      <div class="ctaCenter">
+        <button class="cta" type="button" (click)="openWhatsApp()">
+          <span class="ctaIcon">💬</span>
+          <span class="ctaText">COTIZAR AHORA</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section class="section">
+      <div class="sectionTitle">
+        <span class="line"></span>
+        <span class="titleText">PARA COTIZAR MÁS RÁPIDO</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="checkCard">
+        <div class="checkTitle">Envíanos por WhatsApp estos datos:</div>
+        <ul class="checklist">
+          <li *ngFor="let c of checklist">{{ c }}</li>
+        </ul>
+        <div class="checkFoot">
+          Con esa información te respondemos disponibilidad y costo según logística.
+        </div>
+
+        <div class="ctaCenter">
+          <button class="cta" type="button" (click)="openWhatsApp()">
+            <span class="ctaIcon">📲</span>
+            <span class="ctaText">ENVIAR DATOS POR WHATSAPP</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="galeria" class="section">
+      <div class="sectionTitle">
+        <span class="line"></span>
+        <span class="titleText">GALERÍA</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="gallery">
+        <div class="shot" *ngFor="let g of gallery; trackBy: trackBySrc">
+
+          <ng-container *ngIf="isVideo(g.src); else imgTpl">
+            <video
+              class="shotMedia"
+              [src]="g.src"
+              [muted]="true"
+              [autoplay]="true"
+              [loop]="true"
+              playsinline
+              preload="metadata"
+              (loadedmetadata)="forceMuteAndPlay($event)"
+            ></video>
+          </ng-container>
+
+          <ng-template #imgTpl>
+            <img class="shotMedia" [src]="g.src" [alt]="g.alt" loading="lazy" />
+          </ng-template>
+
+          <div class="shotCap">{{ g.alt }}</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footerBrand">ESCOLTA DE HONOR</div>
+      <div class="footerMuted">Reservas y cotización: WhatsApp • Ceremonia de gala</div>
+      <button class="footerCta" type="button" (click)="openWhatsApp()">Cotizar</button>
+    </footer>
+
+  </div>
+</div>
