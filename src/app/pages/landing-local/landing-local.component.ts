@@ -143,15 +143,6 @@ export class LandingLocalComponent {
     },
   ];
 
-  // ✅ Checklist (ahora para cliente)
-  checklist: string[] = [
-    'Fecha y hora del ingreso / ceremonia',
-    'Distrito / referencia del local',
-    'Tipo de evento (Quinceaños o Promoción)',
-    'Nombre de la homenajeada / promoción',
-    'Punto exacto de ingreso y música (si aplica)',
-  ];
-
   // Galería (IMÁGENES + VIDEOS)
   gallery: GalleryItem[] = [
     { src: 'assets/img/gallery/01.jpg', alt: 'Cruce de espadas - túnel' },

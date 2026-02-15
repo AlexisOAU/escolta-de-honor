@@ -168,23 +168,8 @@
               <img class="protoVideo" [src]="st.mediaSrc" [alt]="st.mediaAlt" loading="lazy" />
             </ng-template>
 
-            <div class="protoCap">{{ st.mediaAlt }}</div>
+            <!-- <div class="protoCap">{{ st.mediaAlt }}</div> -->
           </div>
-        </div>
-      </div>
-
-      <div class="protocolRules">
-        <div class="rule">
-          <div class="ruleTitle">✔ Puntualidad y seguridad</div>
-          <div class="ruleDesc">Ingreso ordenado, manejo disciplinado de espadas y distancias controladas.</div>
-        </div>
-        <div class="rule">
-          <div class="ruleTitle">✔ Coordinación clara</div>
-          <div class="ruleDesc">Nos adaptamos al programa del evento con comunicación previa por WhatsApp.</div>
-        </div>
-        <div class="rule">
-          <div class="ruleTitle">✔ Presentación de gala</div>
-          <div class="ruleDesc">Uniforme formal, postura ceremonial y presencia profesional en todo momento.</div>
         </div>
       </div>
 
@@ -193,32 +178,6 @@
           <span class="ctaIcon">💬</span>
           <span class="ctaText">COTIZAR AHORA</span>
         </button>
-      </div>
-    </section>
-
-    <!-- CHECKLIST -->
-    <section class="section">
-      <div class="sectionTitle">
-        <span class="line"></span>
-        <span class="titleText">PARA COTIZAR MÁS RÁPIDO</span>
-        <span class="line"></span>
-      </div>
-
-      <div class="checkCard">
-        <div class="checkTitle">Envíanos por WhatsApp estos datos:</div>
-        <ul class="checklist">
-          <li *ngFor="let c of checklist">{{ c }}</li>
-        </ul>
-        <div class="checkFoot">
-          Con esa información te respondemos disponibilidad y costo según logística.
-        </div>
-
-        <div class="ctaCenter">
-          <button class="cta" type="button" (click)="openWhatsApp()">
-            <span class="ctaIcon">📲</span>
-            <span class="ctaText">ENVIAR DATOS POR WHATSAPP</span>
-          </button>
-        </div>
       </div>
     </section>
 
@@ -250,7 +209,7 @@
             <img class="shotMedia" [src]="g.src" [alt]="g.alt" loading="lazy" />
           </ng-template>
 
-          <div class="shotCap">{{ g.alt }}</div>
+          <!-- <div class="shotCap">{{ g.alt }}</div> -->
         </div>
       </div>
     </section>
