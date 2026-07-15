@@ -35,6 +35,10 @@ export class LandingLocalComponent {
   whatsappText =
     'Hola, quiero cotizar la Escolta de Honor para un evento. Fecha y lugar: _____. Tipo de evento: Quinceaños/Promoción.';
 
+  // Redes sociales
+  tiktokUrl = 'https://www.tiktok.com/@escoltadehonoroficial';
+  facebookUrl = 'https://www.facebook.com/EscoltaDeHonorr';
+
   // CTA (Clientes)
   ctaPrimary = 'COTIZAR POR WHATSAPP';
   ctaSecondary = 'VER PROTOCOLO';
@@ -161,6 +165,11 @@ export class LandingLocalComponent {
 
   // ✅ Abre WhatsApp con mensaje listo
   openWhatsApp(): void {
+    const gtag = (window as any).gtag;
+    if (typeof gtag === 'function') {
+      gtag('event', 'generate_lead', { method: 'whatsapp' });
+    }
+
     const text = encodeURIComponent(this.whatsappText);
     const url = `https://wa.me/${this.whatsappNumber}?text=${text}`;
     window.open(url, '_blank', 'noopener,noreferrer');
@@ -180,6 +189,10 @@ export class LandingLocalComponent {
     const video = ev.target as HTMLVideoElement;
     video.muted = true;
     video.volume = 0;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
 
     const p = video.play();
     if (p && typeof (p as Promise<void>).catch === 'function') {
