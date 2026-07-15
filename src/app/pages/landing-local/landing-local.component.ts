@@ -34,6 +34,8 @@ export class LandingLocalComponent {
   whatsappNumber = '51994503279'; // EJ: 51987654321
   whatsappText =
     'Hola, quiero cotizar la Escolta de Honor para un evento. Fecha y lugar: _____. Tipo de evento: Quinceaños/Promoción.';
+  whatsappTextAliados =
+    'Hola, tengo un local de eventos / soy promotor y quiero información para ofrecer la Escolta de Honor dentro de mis paquetes.';
 
   // Redes sociales
   tiktokUrl = 'https://www.tiktok.com/@escoltadehonoroficial';
@@ -163,15 +165,24 @@ export class LandingLocalComponent {
     return s.endsWith('.mp4') || s.endsWith('.webm') || s.endsWith('.ogg');
   }
 
-  // ✅ Abre WhatsApp con mensaje listo
+  // ✅ Abre WhatsApp con mensaje listo (cliente final)
   openWhatsApp(): void {
+    this.sendWhatsApp(this.whatsappText, 'whatsapp_cliente');
+  }
+
+  // ✅ Abre WhatsApp con mensaje listo (locales/promotores)
+  openWhatsAppAliados(): void {
+    this.sendWhatsApp(this.whatsappTextAliados, 'whatsapp_aliado');
+  }
+
+  private sendWhatsApp(text: string, method: string): void {
     const gtag = (window as any).gtag;
     if (typeof gtag === 'function') {
-      gtag('event', 'generate_lead', { method: 'whatsapp' });
+      gtag('event', 'generate_lead', { method });
     }
 
-    const text = encodeURIComponent(this.whatsappText);
-    const url = `https://wa.me/${this.whatsappNumber}?text=${text}`;
+    const encoded = encodeURIComponent(text);
+    const url = `https://wa.me/${this.whatsappNumber}?text=${encoded}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   }
 
